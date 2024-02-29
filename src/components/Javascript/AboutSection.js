@@ -59,7 +59,7 @@ const AboutSection = () => {
               in
               the AI revolution.
             </p>
-            <a href="#" className="btn-learn-more">Learn More</a>
+            <a href="#features" className="btn-learn-more">Learn More</a>
           </div>
         </div>
 
