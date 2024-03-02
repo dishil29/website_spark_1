@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 // import '../Css/style4.css';
 import {HashLink as Link} from 'react-router-hash-link';
 // import Scrollspy from 'react-scrollspy';
+import Sidebar from './Sidebar';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import '../Css/style5.css';
 import '../Images/favicon.png';
@@ -28,51 +30,14 @@ import '../vendor/animate/animate2.css';
 // import '../vendor/php-email-form/validate.js';
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    const navbarlinks = document.querySelectorAll('#navbar .scrollto');
-    const position = window.scrollY + 200;
-
-    navbarlinks.forEach((navbarlink) => {
-      if (!navbarlink.hash) return;
-      const section = document.querySelector(navbarlink.hash);
-      if (!section) return;
-      if (position >= section.offsetTop && position <= section.offsetTop + section.offsetHeight) {
-        navbarlink.classList.add('active');
-      } else {
-        navbarlink.classList.remove('active');
-      }
-    });
-
-    const selectHeader = document.querySelector('#header');
-    if (selectHeader) {
-      // Checking if the scroll position is greater than 100 pixels
-      if (window.scrollY > 100) {
-        // Setting the scrolled state to true and adding the 'header-scrolled' class
-        setScrolled(true);
-        selectHeader.classList.add('header-scrolled');
-      } else {
-        // Setting the scrolled state to false and removing the 'header-scrolled' class
-        setScrolled(false);
-        selectHeader.classList.remove('header-scrolled');
-      }
-    }
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
   };
-
-  // Adding a scroll event listener to the window, calling handleScroll on scroll
-  window.addEventListener('scroll', handleScroll);
-
-  // Cleanup: Remove the scroll event listener when the component is unmounted
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, []);
-
 
   return (
-    <header id="header" className={`fixed-top d-flex align-items-center  header-transparent${scrolled ? 'header-scrolled' : ''}`}>
+    <header id="header" className={`fixed-top d-flex align-items-center  header-transparent`}>
       <div className="container d-flex align-items-center justify-content-between">
         <Link to="/">
           <img  src="/favicon.png" style={{ height: '80px', width: '80px' }} alt="" className="img-fluid" />
@@ -82,9 +47,8 @@ useEffect(() => {
             <Link to="/">SPARK4AI</Link>
           </h1>
         </div>
-        <nav id="navbar" className="navbar">
+        <nav id="navbar" className={`navbar${isDropdownOpen ? ' navbar-mobile' : ''}`}>
           <ul>
-        {/* <Scrollspy items={['home', 'about', 'features', 'council', 'projects', 'speakers', 'team', 'contact']} currentClassName="active" offset={-70}> */}
             <li>
               <Link to="/"  className="nav-link scrollto active">
                 Home
@@ -125,9 +89,54 @@ useEffect(() => {
                 Contact
               </Link>
             </li>
-            {/* </Scrollspy> */}
-            </ul>
-          <i className="bi bi-list mobile-nav-toggle"></i>
+          </ul>
+          {/* <i className={`bi bi-list mobile-nav-toggle ${isDropdownOpen ? 'bi-x' : ''}`} onClick={toggleDropdown}></i> */}
+          <i className={`bi bi-list mobile-nav-toggle  dropdown ${isDropdownOpen ? 'bi-x' : ''}`} onClick={toggleDropdown}></i>
+
+          {isDropdownOpen && (
+            <div className="navbar-mobile div">
+              <li>
+                <Link to="/" className="scrollto "onClick={() => setDropdownOpen(false)}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link smooth to="#about" onClick={() => setDropdownOpen(false)}className="scrollto ">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link smooth to="#features" onClick={() => setDropdownOpen(false)}className="scrollto ">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/council" className="scrollto ">
+                  AI Council
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="scrollto ">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link smooth to="#speakers" onClick={() => setDropdownOpen(false)}className="scrollto ">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link smooth to="#team" onClick={() => setDropdownOpen(false)}className="scrollto ">
+                  Team
+                </Link>
+              </li>
+              <li>
+                <Link smooth to="#contact" onClick={() => setDropdownOpen(false)}className="scrollto ">
+                  Contact
+                </Link>
+              </li>
+            </div>
+          )}
         </nav>
       </div>
     </header>
