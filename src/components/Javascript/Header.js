@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // import '../Css/style4.css';
 import {HashLink as Link} from 'react-router-hash-link';
 // import Scrollspy from 'react-scrollspy';
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import '../Css/style5.css';
