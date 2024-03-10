@@ -283,7 +283,15 @@ h6 {
     display: none;
   }
 }
+@media (max-width: 1300px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
 
+  .navbar ul {
+    display: none;
+  }
+}
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
