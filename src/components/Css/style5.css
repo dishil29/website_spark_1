@@ -615,7 +615,12 @@ section {
   color: #fff;
   text-decoration: none;
 }
-
+@media (max-width: 768px) {
+  .about .content  {
+    /* align-items: center;
+    justify-content: center; */
+      margin-left: auto;
+  }
 /*--------------------------------------------------------------
 # Features
 --------------------------------------------------------------*/
@@ -686,6 +691,9 @@ section {
     padding: 0;
     line-height: 1;
     font-size: 36px;
+  }
+  .features .tab-content {
+    margin-left: auto;
   }
 }
 
