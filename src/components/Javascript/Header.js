@@ -98,7 +98,7 @@ const Header = () => {
             <div className="navbar-mobile div">
               <li>
                 <Link to="/" className="scrollto ">
-                <FaIcons.FaBars onClick={toggleDropdown} />
+                <FaIcons.FaTimes onClick={toggleDropdown} />
                 </Link>
               </li>
               <li>
