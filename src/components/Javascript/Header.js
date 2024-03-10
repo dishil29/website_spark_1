@@ -1,11 +1,12 @@
 // Header.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-scroll'; // If you are using React Router
 // import '../Css/style4.css';
 import {HashLink as Link} from 'react-router-hash-link';
 // import Scrollspy from 'react-scrollspy';
 // import Sidebar from './Sidebar';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import * as FaIcons from 'react-icons/fa';
 
 import '../Css/style5.css';
 import '../Images/favicon.png';
@@ -95,6 +96,11 @@ const Header = () => {
 
           {isDropdownOpen && (
             <div className="navbar-mobile div">
+              <li>
+                <Link to="/" className="scrollto ">
+                <FaIcons.FaBars onClick={toggleDropdown} />
+                </Link>
+              </li>
               <li>
                 <Link to="/" className="scrollto "onClick={() => setDropdownOpen(false)}>
                   Home
