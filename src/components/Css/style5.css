@@ -174,9 +174,13 @@ h6 {
 .navbar li:hover>a {
   background: #BF8C5D;
 }
+/* Hide mobile navigation toggle button on desktop */
 
+.dropdown{
+  display: none;
+}
 .navbar .dropdown div {
-  display: block;
+  display: none;
   position: absolute;
   left: 5px;
   top: calc(100% + 30px);
@@ -239,6 +243,9 @@ h6 {
   .navbar .dropdown .dropdown:hover>div{
     left: -100%;
   }
+  /* .navbar ul {
+    display: none;
+  } */
 }
 
 /**
@@ -251,6 +258,7 @@ h6 {
   display: none;
   line-height: 0;
   transition: 0.5s;
+  /* display: none; */
 }
 .navbar-mobile li{
   display: flex;
@@ -265,6 +273,7 @@ h6 {
   display: none;
   justify-content: center;
 }
+
 @media (max-width: 991px) {
   .mobile-nav-toggle {
     display: block;
@@ -621,6 +630,7 @@ section {
     justify-content: center; */
       margin-left: auto;
   }
+}
 /*--------------------------------------------------------------
 # Features
 --------------------------------------------------------------*/
@@ -638,7 +648,6 @@ section {
 }
 
 .features .nav-tabs {
-  /* border: 0; */
   border: bold;
   border-color: black;
 }
@@ -1812,7 +1821,7 @@ margin-right: 5px;
 .team .member .member-img {
   position: relative;
   overflow: hidden;
-  
+ 
 }
 
 .team .member .social {
