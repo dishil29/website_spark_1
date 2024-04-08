@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Javascript/Header';
 import HeroSection from './components/Javascript/HeroSection';
 import AboutSection from './components/Javascript/AboutSection';
@@ -10,6 +10,11 @@ import Contact from './components/Javascript/Contact';
 import Footer from './components/Javascript/Footer';
 import ComingSoon from './components/Javascript/ComingSoon';
 import ComingSoon2 from './components/Javascript/ComingSoon2';
+// pages new 
+import Login from './components/pages/login';
+import Signup from './components/pages/signup';
+import { useAuthContext } from './components/hooks/useAuthContext'
+//extra imports
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './components/Css/style5.css';
 import './components/vendor/animate/animate2.css';
@@ -34,7 +39,6 @@ import './components/vendor/animate/animate2.css';
 const Home = () => {
   return (
     <div>
-      <Header />
       <HeroSection />
       <AboutSection />
       <FeaturesSection />
@@ -47,17 +51,22 @@ const Home = () => {
 };
 
 const App = () => {
+  const { user } = useAuthContext() 
+
   return (
     <Router>
+        <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/about" element={<AboutSection />} /> */}
         <Route path="/features" element={<FeaturesSection />} />
-        <Route path="/projects" element={<ComingSoon2 />} />
+        <Route path="/projects" element={ user ? <ComingSoon2 /> : <Navigate to="/login" />} />
         <Route path="/blog" element={<BlogSection />} />
         <Route path="/team" element={<TeamSection />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/council" element={<ComingSoon />} />
+        <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
       </Routes>
     </Router>
     
